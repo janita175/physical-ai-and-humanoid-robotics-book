@@ -36,7 +36,7 @@ This comprehensive course book covers robotics, AI, and physical interaction con
 
 ## Deployment
 
-This site is automatically deployed to GitHub Pages at: https://zijayaseen.github.io/physical-ai-and-humanoid-robotics-book/
+This site is automatically deployed to GitHub Pages at: https://janita175.github.io/physical-ai-and-humanoid-robotics-book/
 
 ## Contributing
 
