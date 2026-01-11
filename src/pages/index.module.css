@@ -1,0 +1,568 @@
+/**
+ * index.module.css
+ * Updated: ensure visible gap between module cards (uses :global to target Docusaurus classes)
+ */
+
+/* Hero Banner Styles */
+.heroBanner {
+  padding: 5rem 0 0 0;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #4169E1, #6495ED);
+  color: white;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.heroBanner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/img/hero-bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+/* Ensure container doesn't constrain the image */
+.container {
+  max-width: 100% !important;
+  padding: 0 0 !important;
+}
+
+.heroBanner .container {
+  max-width: 100% !important;
+}
+
+/* Hero text & image */
+.heroText {
+  flex: 0 0 600px;
+  max-width: 500px;
+}
+
+.heroImage {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-width: 0; /* allow shrinking on small screens */
+}
+
+.heroText h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.heroText p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Button Styles */
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.buttons .button {
+  background-color: #4169E1 !important;
+  border-color: #4169E1 !important;
+  color: white !important;
+  padding: 1rem 2rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 4px 15px rgba(65, 105, 225, 0.3) !important;
+}
+
+.buttons .button:hover {
+  background-color: #6495ED !important;
+  border-color: #6495ED !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(65, 105, 225, 0.4) !important;
+}
+
+.buttons .button--outline {
+  background-color: transparent !important;
+  border: 2px solid white !important;
+  color: white !important;
+}
+
+.buttons .button--outline:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+/* Hero image element */
+.heroImageElement {
+  max-width: 100%;
+  height: auto;
+  max-height: 1200px;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  transition: transform 0.3s ease;
+}
+
+/* disable hover zoom on smaller screens (prevents layout shift) */
+@media (max-width: 768px) {
+  .heroImageElement {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+.heroImageElement:hover {
+  transform: scale(1.05);
+}
+
+/* Features Section */
+.features {
+  padding: 1rem 0;
+  background: var(--ifm-background-surface-color);
+}
+
+.featureIcon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.features h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
+}
+
+.features p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--ifm-font-color-secondary);
+}
+
+/* Modules Section */
+.modules {
+  padding: 1rem 0;
+  background: var(--ifm-background-surface-color);
+  border-top: gray 1px solid;
+}
+
+/* IMPORTANT: target global Docusaurus .row and .col from within CSS module */
+/* Control gap here so cards get consistent spacing (desktop + mobile) */
+.modules :global(.row) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px; /* <-- primary gap between cards (change this value if you want larger/smaller) */
+}
+
+/* Keep columns but remove their internal margins/padding that conflict with row gap */
+.modules :global(.col) {
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+  /* Allow typical col widths to remain (col--3 etc.) */
+}
+
+.modules h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--ifm-color-primary);
+}
+
+.modules .hero__subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: var(--ifm-font-color-secondary);
+}
+
+/* moduleCard: remove external margins so row gap is the only spacing source */
+.moduleCard {
+  height: 100%;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(65, 105, 225, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  margin: 0; /* <-- removed previous 1rem margin to avoid double spacing */
+  background-color: var(--ifm-card-background, #fff);
+}
+
+.moduleCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(65, 105, 225, 0.15);
+  border-color: rgba(65, 105, 225, 0.3);
+}
+
+.moduleCard .card__header {
+  background: linear-gradient(135deg, #4169E1, #6495ED);
+  color: white;
+  padding: 1rem;
+}
+
+.moduleCard .card__body {
+  padding: 1rem;
+}
+
+.moduleCard .card__footer {
+  padding: 0.75rem 1rem;
+}
+
+/* CTA Section */
+.cta {
+  background: linear-gradient(135deg, #4169E1, #6495ED);
+  color: white;
+  padding: 1.5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/img/hero-bg.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.cta > div {
+  position: relative;
+  z-index: 1;
+}
+
+.cta h2 {
+  color: white;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.cta .hero__subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.cta .buttons {
+  justify-content: center;
+}
+
+/* Responsive adjustments (general) */
+@media (max-width: 996px) {
+  .heroBanner {
+    padding: 2rem 0;
+    min-height: auto;
+  }
+
+  .heroContent {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .heroText {
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+
+  .heroImage {
+    width: 100%;
+  }
+
+  .heroImageElement {
+    max-width: 90vw;
+    max-height: 600px;
+  }
+
+  .buttons {
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .buttons a {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .heroText h1 {
+    font-size: 2.5rem;
+  }
+
+  .heroText p {
+    font-size: 1.2rem;
+  }
+}
+
+/* ---------- Mobile fixes: stack module cards, smaller fonts, reduced padding ---------- */
+@media (max-width: 768px) {
+  /* reduce page side padding and overall page padding */
+  .container,
+  .heroBanner .container,
+  .features .container,
+  .modules .container,
+  .cta .container {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+
+  /* reduce vertical padding for sections */
+  .features,
+  .modules,
+  .cta {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .heroBanner {
+    padding: 0.5rem 0 0 0 !important;
+    min-height: auto !important;
+  }
+
+  .heroBanner .container {
+    padding: 0 0.5rem !important;
+  }
+
+  /* ensure the global .row stacks vertically on mobile and preserves gap */
+  .modules :global(.row) {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important; /* mobile gap */
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .modules :global(.col) {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    padding-left: 2px !important;
+    padding-right: 2px !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+  }
+
+  /* smaller fonts for mobile */
+  .heroText h1 {
+    font-size: 2rem !important;
+  }
+
+  .heroText p {
+    font-size: 1rem !important;
+  }
+
+  .modules h2 {
+    font-size: 1.8rem !important;
+  }
+
+  .modules .hero__subtitle {
+    font-size: 1rem !important;
+  }
+
+  .moduleCard .card__header h3 {
+    font-size: 1.2rem !important;
+  }
+
+  .moduleCard .card__body p {
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .features h3 {
+    font-size: 1.2rem !important;
+  }
+
+  .features p {
+    font-size: 0.9rem !important;
+  }
+
+  .cta h2 {
+    font-size: 1.8rem !important;
+  }
+
+  .cta .hero__subtitle {
+    font-size: 1rem !important;
+  }
+
+  /* visually separate cards and remove merging */
+  .moduleCard {
+    padding: 8px !important;
+    min-height: auto !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06) !important;
+    border: 1px solid rgba(65,105,225,0.08) !important;
+    background-color: var(--ifm-background-surface-color) !important;
+  }
+
+  /* button full width and cozy spacing */
+  .buttons a.button {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Floating RAG Widget Styles */
+.rag-float-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4169e1, #6495ed);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(65, 105, 225, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  animation: float 3s ease-in-out infinite;
+}
+
+.rag-float-button:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 6px 25px rgba(65, 105, 225, 0.6);
+}
+
+.rag-float-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rag-widget-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 400px;
+  z-index: 1000;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out;
+}
+
+.rag-close-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: #666;
+  z-index: 1001;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rag-close-button:hover {
+  background: rgba(255, 255, 255, 1);
+  color: #333;
+  transform: scale(1.1);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Animation for elements */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heroText,
+.heroImage {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.heroText {
+  animation-delay: 0.2s;
+}
+
+.heroImage {
+  animation-delay: 0.4s;
+}
